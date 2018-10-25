@@ -17,6 +17,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+//指明静态资源位于public目录下
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
