@@ -1,22 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
     <script src="/lib/requirejs/require.js" data-main="/js/position"></script>
 </head>
+
 <body>
     <div class="container">
         <nav class="navbar navbar-inverse">
- 
-            
-          </nav>
-            </div>
-    
-            <div class="moudle">
+        </nav>
+    </div>
 
+    <div class="container">
+        <div class="row col-md-10 col-md-offset-1" style="margin-bottom:10px;">
+            <div class="col-md-2 pull-left">
+                职位管理
             </div>
-              
+            <a href="#" class="btn btn-info pull-right" data-toggle="modal" data-target="#addModal" >添加</a>
+        </div>
+
+        <div class="row col-md-10 col-md-offset-1">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>序号</td>
+                        <td>公司logo</td>
+                        <td>职位名称</td>
+                        <td>公司名称</td>
+                        <td>工作经验</td>
+                        <td>职位类型</td>
+                        <td>工作地点</td>
+                        <td>职位薪资</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td>dd</td>
+                        <td>ddd</td>
+                        <td>dd</td>
+                        <td>dd</td>
+                        <td>dd</td>
+                        <td>dd</td>
+                        <td>
+                            <a href="#">修改</a>
+                            <a href="#">删除</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="loginMoudle"></div>
+    <div class="registerMoudle"></div>
+
+
+
+
+
+    <div class="modal fade" id="addModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">职位信息</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="logo">公司logo</label>
+                  <input type="file" class="form-control" id="logo">
+                </div>
+                <div class="form-group">
+                  <label for="workname">职位名称</label>
+                  <input type="password" class="form-control" id="workname" placeholder="输入职位名">
+                </div>
+                <div class="form-group">
+                  <label for="companyname">公司名称</label>
+                  <input type="password" class="form-control" id="companyname" placeholder="输入公司名称">
+                </div>
+                <div class="form-group">
+                  <label for="workexp">工作经验</label>
+                  <input type="email" class="form-control" id="workexp" placeholder="输入工作经验">
+                </div>
+                <div class="form-group">
+                    <label for="worktype">职位类型</label>
+                    <input type="email" class="form-control" id="worktype" placeholder="输入职位类型">
+                  </div>
+                  <div class="form-group">
+                    <label for="workspace">工作地点</label>
+                    <input type="email" class="form-control" id="workspace" placeholder="输入工作地点">
+                  </div>
+                  <div class="form-group">
+                    <label for="money">岗位薪资</label>
+                    <input type="email" class="form-control" id="money" placeholder="输入岗位薪资">
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> -->
+              <button type="button" class="btn btn-primary">提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
+
 </html>
