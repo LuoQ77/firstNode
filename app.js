@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const session = require("express-session"); 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -17,6 +19,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({
+  secret: "asdasdsdasdasdasd",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {maxAge: 30 * 60 * 1000}
+}));
+
 //指明静态资源位于public目录下
 app.use(express.static(path.join(__dirname, 'public')));
 

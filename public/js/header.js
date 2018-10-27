@@ -1,7 +1,7 @@
 define(["jquery"], function ($) {
     function Header() {
         this.load();
-
+        this.getCode();
     }
 
     Header.prototype = {
@@ -13,9 +13,11 @@ define(["jquery"], function ($) {
         },
 
         addListener: function () {
-            $(".btn-login").on("click", this.loginHandler);
+            $(".btn-login").on("click", $.proxy(this.loginHandler,this));
             $(".btn-register").on("click", this.registerHandler);
             $(".link-logout").on("click", this.logoutHandler);
+            $(".input-code").on("blur",this.codeHandler);
+            $(".code").on("click",this.getCode);
         },
 
         loginHandler: function () {
@@ -29,6 +31,7 @@ define(["jquery"], function ($) {
                     $(".alert-danger").removeClass("hidden");
                 }
             })
+            
             return false;
         },
         registerHandler: function () {
@@ -46,7 +49,7 @@ define(["jquery"], function ($) {
 
         loadUser: function () {
             const user = sessionStorage.username;
-            console.log(user);
+            // console.log(user);
             if (user) {
                 $(".login-success").removeClass("hidden").prev("ul").remove();
                 $(".login-success a:first").html("欢迎：" + user);
@@ -66,6 +69,23 @@ define(["jquery"], function ($) {
         registerMoudle: function (data) {
             $(".registerMoudle").html(data);
             this.addListener()
+        },
+        getCode: function(){
+            $.getJSON("/api/captcha",(data)=>{
+                $(".code").html(data.res_body.data);
+            })
+        },
+        codeHandler: function(event){
+            var code = $(event.target).val();
+
+            $.getJSON("api/captcha/vertify",{code},(data)=>{
+                if(data.res_body.vaild){
+                    alert("正确");
+                }else{
+                    alert("错误");
+                }
+
+            })
         }
     }
 
