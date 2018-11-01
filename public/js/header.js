@@ -21,8 +21,9 @@ define(["jquery"], function ($) {
         },
 
         loginHandler: function () {
+            console.log(1);
             const data = $(".form-login").serialize();
-            const url = "http://rap2api.taobao.org/app/mock/115406/api/user/login";
+            const url = "/api/users/login";
             $.post(url, data, function (data) {
                 if (data.res_body.status === 1) {
                     sessionStorage.username = data.res_body.data.username;
@@ -36,7 +37,7 @@ define(["jquery"], function ($) {
         },
         registerHandler: function () {
             const data = $(".form-register").serialize();
-            const url = "http://rap2api.taobao.org/app/mock/115406/api/user/register";
+            const url = "/api/users/register";
             $.post(url, data, function (data) {
                 if (data.res_body.status === 1) {
                     sessionStorage.username = data.res_body.data.username;
@@ -56,8 +57,12 @@ define(["jquery"], function ($) {
             }
         },
         logoutHandler: function () {
-            sessionStorage.removeItem("username");
-            location.reload();
+            $.getJSON("/api/users/logout",function(data){
+                if(data.res_body.status === 1){
+                    sessionStorage.removeItem("username");
+                    location.reload();
+                }    
+            })
         },
         headerHandler: function (data) {
             $("nav").html(data);

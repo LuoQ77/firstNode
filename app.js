@@ -6,8 +6,10 @@ var logger = require('morgan');
 
 const session = require("express-session"); 
 
+const urlModule = require("url");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var positionsRouter = require('./routes/positions')
 
 var app = express();
 
@@ -27,11 +29,29 @@ app.use(session({
   cookie: {maxAge: 30 * 60 * 1000}
 }));
 
+
+app.use(function(req,res,next){
+  const {url} = req;
+  const URL = urlModule.parse(url);
+
+  const pathname = URL.pathname;
+  if(pathname.indexOf("position") != -1){
+    const user = req.session.loginUser;
+
+    if(!user){
+      res.redirect("/");
+      return ;
+    }
+  }
+
+  next();
+})
 //指明静态资源位于public目录下
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use("/api/positions",positionsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

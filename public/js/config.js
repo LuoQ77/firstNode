@@ -5,7 +5,8 @@ require.config({
         "template": "lib/art-template/template-web",
         "cookie": "lib/jquery-plugins/jquery.cookie",
         "bootstrap":"/lib/bootstrap/js/bootstrap.min",
-        "header":"js/header"
+        "header":"js/header",
+        "ejs":"lib/ejs/ejs.min"
     },
     shim: {
         "bootstrap":{

@@ -19,7 +19,7 @@
             <div class="col-md-2 pull-left">
                 职位管理
             </div>
-            <a href="#" class="btn btn-info pull-right" data-toggle="modal" data-target="#addModal" >添加</a>
+            <a href="#" class="btn btn-info pull-right" data-toggle="modal" data-target="#addModal">添加</a>
         </div>
 
         <div class="row col-md-10 col-md-offset-1">
@@ -38,25 +38,55 @@
                         <td>操作</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td></td>
-                        <td>dd</td>
-                        <td>ddd</td>
-                        <td>dd</td>
-                        <td>dd</td>
-                        <td>dd</td>
-                        <td>dd</td>
-                        <td>
-                            <a href="#">修改</a>
-                            <a href="#">删除</a>
-                        </td>
-                    </tr>
-
+                <tbody class="items-list">
                 </tbody>
             </table>
         </div>
+
+        <script type="text/html" id="position_template">
+            {{each list pos}}
+                        <tr>
+                            <td class="id">{{pos.data._id}}</td>
+                            <td><img src="{{pos.data.logo}}" alt="" style="width:40px"></td>
+                            <td class="wn">{{pos.data.workName}}</td>
+                            <td class="cn">{{pos.data.companyName}}</td>
+                            <td class="we">{{pos.data.workExp}}</td>
+                            <td class="wt">{{pos.data.workType}}</td>
+                            <td class="ws">{{pos.data.workSpace}}</td>
+                            <td class="sa">{{pos.data.salary}}</td>
+                            <td>
+                                <a href="#" data-toggle="modal" data-target="#updateModal" class="update">修改</a>
+                                <a href="#">删除</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </script>
+
+        <script type="text/html" id="positions_template">
+            {{each list pos}}
+                        <tr>
+                            <td class="id">{{pos._id}}</td>
+                            <td><img src="{{pos.logo}}" alt="" style="width:40px"></td>
+                            <td class="wn">{{pos.workName}}</td>
+                            <td class="cn">{{pos.companyName}}</td>
+                            <td class="we">{{pos.workExp}}</td>
+                            <td class="wt">{{pos.workType}}</td>
+                            <td class="ws">{{pos.workSpace}}</td>
+                            <td class="sa">{{pos.salary}}</td>
+                            <td>
+                                <a href="#" data-toggle="modal" data-target="#updateModal" class="update">修改</a>
+                                <a href="#" class="delete">删除</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </script>
+        <ul class="pagination">
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
 
     </div>
 
@@ -67,52 +97,109 @@
 
 
 
-    <div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal fade addModal" id="addModal" tabindex="-1">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">职位信息</h4>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">职位信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-add-pos">
+                        <div class="form-group">
+                            <label for="logo">公司logo</label>
+                            <input type="file" class="form-control" id="logo" name="logo">
+                        </div>
+                        <div class="form-group">
+                            <label for="workName">职位名称</label>
+                            <input type="text" class="form-control" id="workName" name="workName" placeholder="输入职位名">
+                        </div>
+                        <div class="form-group">
+                            <label for="companyName">公司名称</label>
+                            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="输入公司名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="workExp">工作经验</label>
+                            <input type="text" class="form-control" id="workExp" name="workExp" placeholder="输入工作经验">
+                        </div>
+                        <div class="form-group">
+                            <label for="workType">职位类型</label>
+                            <input type="text" class="form-control" id="workType" name="workType" placeholder="输入职位类型">
+                        </div>
+                        <div class="form-group">
+                            <label for="workSpace">工作地点</label>
+                            <input type="text" class="form-control" id="workspace" name="workSpace" placeholder="输入工作地点">
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">岗位薪资</label>
+                            <input type="text" class="form-control" id="salary" name="salary" placeholder="输入岗位薪资">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> -->
+                    <button type="button" class="btn btn-primary btn-add-pos">提交</button>
+                </div>
             </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="logo">公司logo</label>
-                  <input type="file" class="form-control" id="logo">
-                </div>
-                <div class="form-group">
-                  <label for="workname">职位名称</label>
-                  <input type="password" class="form-control" id="workname" placeholder="输入职位名">
-                </div>
-                <div class="form-group">
-                  <label for="companyname">公司名称</label>
-                  <input type="password" class="form-control" id="companyname" placeholder="输入公司名称">
-                </div>
-                <div class="form-group">
-                  <label for="workexp">工作经验</label>
-                  <input type="email" class="form-control" id="workexp" placeholder="输入工作经验">
-                </div>
-                <div class="form-group">
-                    <label for="worktype">职位类型</label>
-                    <input type="email" class="form-control" id="worktype" placeholder="输入职位类型">
-                  </div>
-                  <div class="form-group">
-                    <label for="workspace">工作地点</label>
-                    <input type="email" class="form-control" id="workspace" placeholder="输入工作地点">
-                  </div>
-                  <div class="form-group">
-                    <label for="money">岗位薪资</label>
-                    <input type="email" class="form-control" id="money" placeholder="输入岗位薪资">
-                  </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <!-- <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> -->
-              <button type="button" class="btn btn-primary">提交</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+
+    <div class="modal fade updateModal" id="updateModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">职位信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-up-pos">
+
+                        <div class="form-group">
+                            
+                            <input type="text" class="form-control" id="_id" name="_id">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="updatelogo">公司logo</label>
+                            <input type="file" class="form-control" id="updatelogo" name="updatelogo">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateworkName">职位名称</label>
+                            <input type="text" class="form-control" id="updateworkName" name="updateworkName"
+                                placeholder="输入职位名">
+                        </div>
+                        <div class="form-group">
+                            <label for="updatecompanyName">公司名称</label>
+                            <input type="text" class="form-control" id="updatecompanyName" name="updatecompanyName"
+                                placeholder="输入公司名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateworkExp">工作经验</label>
+                            <input type="text" class="form-control" id="updateworkExp" name="updateworkExp" placeholder="输入工作经验">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateworkType">职位类型</label>
+                            <input type="text" class="form-control" id="updateworkType" name="updateworkType"
+                                placeholder="输入职位类型">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateworkSpace">工作地点</label>
+                            <input type="text" class="form-control" id="updateworkspace" name="updateworkSpace"
+                                placeholder="输入工作地点">
+                        </div>
+                        <div class="form-group">
+                            <label for="updatesalary">岗位薪资</label>
+                            <input type="text" class="form-control" id="updatesalary" name="updatesalary" placeholder="输入岗位薪资">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> -->
+                    <button type="button" class="btn btn-primary btn-up-pos">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
