@@ -39,7 +39,7 @@ require(["config"],function(){
 
                     success: function(data){
                         if(data.res_body.status === 1){
-                            console.log(data.res_body.data);
+                            location.reload();
                         }
                     }
                 })

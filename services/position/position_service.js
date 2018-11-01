@@ -74,7 +74,7 @@ const PositionService = {
         if(req.file){
             logo = "/images/upload/" + req.file.filename;
         }
-
+        console.log(logo);
         PositionDao.update(_id,{companyName:updatecompanyName, salary:updatesalary, workName:updateworkName,workExp:updateworkExp,logo,workType:updateworkType,workSpace:updateworkSpace})
                 .then((data)=>{
                     res.json({

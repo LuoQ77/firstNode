@@ -25,7 +25,7 @@ router.get("/find_by_page",PositionService.findByPage);
 
 router.post("/delete",PositionService.delete);
 
-router.post("/update",PositionService.update);
+router.post("/update",upload.single("updatelogo"),PositionService.update);
 
 
 module.exports = router;
